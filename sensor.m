@@ -55,7 +55,7 @@ end
 % end
 % res
 
-%% Sensor fusion algorithm
+%% Sensor fusion algorithm and Hybrid
 
 function [bound,bound_mean] =  Sensor_fuse(PE)
     bound = [];
@@ -86,33 +86,3 @@ function [bound,bound_mean] =  Sensor_fuse(PE)
         bound = [bound; [B(idx(1)), B(idx(end) + 1)]];
     end
 end
-
-%% Brooks-Iyenger Hybrid algorithm
-% N=5;f=1;;
-% bound = [];
-% for sr=1:4
-%     lowB = PE(sr, :,1) - PE(sr,:,2);
-%     upB = PE(sr,:,1) + PE(sr,:,2);
-% 
-%     B = [lowB upB];
-%     [B, I] = sort(B);
-%     flag = zeros(size(B));
-%     for i=1:size(B, 2)
-%         if I(i) > size(B, 2) / 2
-%             continue
-%         end
-%         k = i;
-%         while I(k) ~= I(i)+ 5
-%             flag(k) = flag(k) + 1;
-%             k = k + 1;
-%         end
-%     end
-%     idx = 1:size(B, 2);
-%     idx = idx(flag >= 4);
-%     weight = flag(flag >= 4);
-%     ranges = [idx;idx+1];
-%     mean_r = mean(B(ranges));
-%     bound(sr) = (mean_r * weight') / sum(weight);
-% end
-% bound
-
